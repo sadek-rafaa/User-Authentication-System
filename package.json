@@ -10,7 +10,7 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "migrate": "node config/migrate.js",
-  "migrate:reset": "mysql -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -e 'DROP DATABASE IF EXISTS $DB_NAME; CREATE DATABASE $DB_NAME' && npm run migrate"
+    "migrate:reset": "mysql -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -e 'DROP DATABASE IF EXISTS $DB_NAME; CREATE DATABASE $DB_NAME' && npm run migrate"
   },
   "repository": {
     "type": "git",
@@ -32,7 +32,8 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.14.1",
-    "nodemailer": "^7.0.3"
+    "nodemailer": "^7.0.3",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "eslint": "^9.26.0",
