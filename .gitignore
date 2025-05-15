@@ -1,6 +1,17 @@
-node_modules/
+# Environment
 .env
-.DS_Store
+.env.local
+
+# Runtime
+node_modules/
+
+# Logs
 *.log
-coverage/
+logs/
+
+# IDE
 .vscode/
+.idea/
+
+# Test
+coverage/

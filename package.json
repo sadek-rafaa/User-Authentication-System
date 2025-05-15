@@ -1,9 +1,14 @@
 {
   "name": "@sadek-rafaa/ath-system",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +21,7 @@
     "url": "https://github.com/sadek-rafaa/User-Authentication-System/issues"
   },
   "homepage": "https://github.com/sadek-rafaa/User-Authentication-System#readme",
-  "description": "",
+  "description": "Secure authentication system",
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
