@@ -8,7 +8,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "migrate": "node config/migrate.js",
+  "migrate:reset": "mysql -u $DB_USER -p$DB_PASSWORD -h $DB_HOST -e 'DROP DATABASE IF EXISTS $DB_NAME; CREATE DATABASE $DB_NAME' && npm run migrate"
   },
   "repository": {
     "type": "git",
