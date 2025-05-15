@@ -1,0 +1,41 @@
+const jwt = require('jsonwebtoken');
+const { User } = require('../models');
+const { validateRegisterInput } = require('../utils/validators');
+
+const register = async (req, res) => {
+  // 1. Input Validation
+  const { error } = validateRegisterInput(req.body);
+  if (error) return res.status(400).json({ errors: error.details });
+
+  try {
+    // 2. Check for existing user
+    const existingUser = await User.findByEmail(req.body.email);
+    if (existingUser) {
+      return res.status(409).json({ message: 'Email already in use' });
+    }
+
+    // 3. Create user
+    const user = await User.create(req.body);
+
+    // 4. Generate JWT
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN }
+    );
+
+    // 5. Respond (excluding sensitive data)
+    res.status(201).json({
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      token
+    });
+  } catch (err) {
+    console.error('Registration error:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { register };

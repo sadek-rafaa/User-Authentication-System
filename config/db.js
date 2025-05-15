@@ -27,10 +27,16 @@ pool.getConnection()
     process.exit(1); // Fail fast if DB is unreachable
   });
 
+// Remove the process.exit() call and modify exports:
 module.exports = {
   pool,
   execute: async (sql, params) => {
-    const [rows] = await pool.execute(sql, params);
-    return rows;
+    try {
+      const [rows] = await pool.execute(sql, params);
+      return rows;
+    } catch (err) {
+      console.error('Database error:', err);
+      throw err;
+    }
   }
 };

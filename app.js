@@ -5,6 +5,10 @@ const app = express();
 // Basic middleware
 app.use(express.json());
 
+// Add after middleware setup:
+const authRoutes = require('./routes/auth.routes');
+app.use('/api/auth', authRoutes);
+
 // Add server listener
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
