@@ -17,5 +17,10 @@ module.exports = {
     password: passwordSchema,
     firstName: Joi.string().trim().max(100).required(),
     lastName: Joi.string().trim().max(100).required()
-  }).validate(data)
+  }).validate(data, { abortEarly: false }),
+
+  validateLoginInput: (data) => Joi.object({
+    email: emailSchema,
+    password: Joi.string().required()
+  }).validate(data, { abortEarly: false })
 };
